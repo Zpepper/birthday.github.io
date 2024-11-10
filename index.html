@@ -26,7 +26,7 @@ body {
     z-index: -1;
   }
   h1{
-    font-size: 36px;
+    font-size: 40px;
     color: #B1BCE6;
     font-family: '华文行楷';
   }
@@ -118,7 +118,21 @@ video {
     margin: auto;
     display: block;
 }
+.firework {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
 
+        /* 烟花动画 */
+        @keyframes explode {
+            0% { transform: scale(0); opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+        }
 
     </style>
   </head>
@@ -264,7 +278,7 @@ setTimeout(function(){
         textone.innerHTML = '我们永不分离💗';
         texttwo.innerHTML = 'Forever';
         textthree.innerHTML = '';
-      },18000)
+      },20000)
       setTimeout(function(){
         textone.innerHTML = '视频怪物即将出现';
         texttwo.innerHTML = '请宝贝别忘点击屏幕哦';
@@ -281,14 +295,14 @@ setTimeout(function(){
                     word.innerText = '';
                 });
             });
-      },23000)
+      },25000)
       setTimeout(function(){
         let videoContainer = document.getElementById('videofilm');
         if (videoContainer) {
         textone.innerHTML = '';
         texttwo.innerHTML = '';
     videoContainer.outerHTML = '';}
-      },25000)
+      },28000)
       setTimeout(function () {
         textone.innerHTML = '';
         texttwo.innerHTML = '';
@@ -305,10 +319,52 @@ setTimeout(function(){
     // 在添加视频后直接播放视频
     video.play();
 
-}, 25550);
+},28050);
  
  
     </script>
+     <script>
+        // 设定烟花显示的持续时间（毫秒）
+        const duration = 28000; // 秒
+        const startTime = Date.now(); // 获取开始时间
+        let intervalId;
+      // 生成烟花
+      function createFirework() {
+          // 创建一个烟花元素
+          const firework = document.createElement("div");
+          firework.classList.add("firework");
+
+          // 设置随机位置
+          const x = Math.random() * window.innerWidth;
+          const y = Math.random() * window.innerHeight;
+          firework.style.left = `${x}px`;
+          firework.style.top = `${y}px`;
+
+          // 随机颜色
+          const colors = ["#EC1342", "#1313EC", "#ffe14a", "#EC7513", "#4a9eff"];
+          firework.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+          // 添加到页面并设置动画结束后移除
+          document.body.appendChild(firework);
+          setTimeout(() => {
+              firework.remove();
+          }, 1000);
+      }
+  // 定时生成烟花的函数
+  function startFireworks() {
+            intervalId = setInterval(() => {
+                // 判断是否到达指定时间
+                if (Date.now() - startTime >= duration) {
+                    clearInterval(intervalId); // 停止生成烟花
+                    return;
+                }
+                createFirework();
+            }, 100);
+        }
+
+        // 启动烟花效果
+        startFireworks();
+  </script>
     
     
   </body>
