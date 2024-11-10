@@ -1,3 +1,4 @@
+<!-- 普通，没加视频 -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -26,7 +27,7 @@ body {
     z-index: -1;
   }
   h1{
-    font-size: 40px;
+    font-size: 38px;
     color: #B1BCE6;
     font-family: '华文行楷';
   }
@@ -66,8 +67,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
-}
-.textfour {
+  .textfour {
     position: absolute;
     left: 50%;
     top: 60%;
@@ -78,6 +78,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     color: transparent;
+}
 }
 :root {
     --margin-top: 0;
@@ -120,8 +121,8 @@ video {
 }
 .firework {
             position: absolute;
-            width: 12px;
-            height: 12px;
+            width: 5px;
+            height:5px;
             background-color: #fff;
             border-radius: 50%;
             animation: explode 1s ease-out forwards;
@@ -134,16 +135,36 @@ video {
             100% { transform: scale(2); opacity: 0; }
         }
 
+a {
+            text-decoration: underline; /* 添加下划线样式 */
+            color: inherit;
+        }
+         /* 移动端适配，隐藏桌面端的提示元素 */
+         @media only screen and (max-width: 768px) {
+            #audioHint {
+                display: none;
+            }
+        }
+
+        /* 移动端提示元素样式 */
+        #audioHint {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-align: center;
+            z-index: 999;
+        }
     </style>
   </head>
   <body>
-    <!-- <video id="videofilm" poster="img\微信图片_20240823214307.jpg" autoplay muted loop>
-      <source src="video\6076331-uhd_3840_2160_30fps.mp4" > -->
+    <!-- <video id="videofilm" poster="img\微信图片_20240823214307.jpg" autoplay muted loop> -->
+      <!-- <source src="video\6076331-uhd_3840_2160_30fps.mp4" type="video/mp4"> -->
     </video>
-    <audio id="background-audio" autoplay style="display: none;">
-      <source src="M800001r7JYe2nqP5z.mp3" type="audio/mpeg">
-
-  </audio>
     <div class="textone">
       <h1>燕衔春意送柔情</h1>
     </div>
@@ -156,9 +177,7 @@ video {
     <div class="textfour">
       <h1></h1>
     </div>
-    <audio src="video/晴天.mp3" autoplay loop></audio>
-    <div id="videoContainer"></div>
-    <div id="videoCOntainer"></div>
+    <audio id="backgroundMusic" src="video/M800001r7JYe2nqP5z.mp3" preload="auto"></audio>
     <div class="container"></div>
     <script >
       
@@ -258,6 +277,8 @@ function init(){
     this.style.color = 'Blue';});
     word.addEventListener('mouseout', function () {
         this.style.color = 'HotPink';});
+
+
     })
     container.appendChild(f);
 }
@@ -266,67 +287,60 @@ let textone = document.querySelector('.textone').querySelector('h1');
 let texttwo = document.querySelector('.texttwo').querySelector('h1');
 let textthree = document.querySelector('.textthree').querySelector('h1');
 let textfour = document.querySelector('.textfour').querySelector('h1');
-
 setTimeout(function(){
         textone.innerHTML = '这一生，我们来彼此守护';
         texttwo.innerHTML = '燕燕and乐乐';
+          // textone.style.color = '#E8F9FD';
+          // textone.style.fontFamily = '楷体'
+          // texttwo.style.color = '#E8F9FD';
+          // texttwo.style.fontFamily = '楷体'
+          // textthree.style.color = '#E8F9FD';
+          // textthree.style.fontFamily = '楷体'
           textthree.innerHTML = '';
       },6000)
       setTimeout(function(){
         textone.innerHTML = '我们携手同行';
-        texttwo.innerHTML = '用彼此的温柔度过四季❤️‍🔥';
+        texttwo.innerHTML = '用彼此的温柔度过四季 ❤️‍🔥';
         textthree.innerHTML = 'Forever';
         textfour.innerHTML = '';
+        
       },12000)
       setTimeout(function(){
         textone.innerHTML = '我们永不分离💗';
         texttwo.innerHTML = 'Forever';
         textthree.innerHTML = '';
-      },20000)
-      setTimeout(function(){
-        textone.innerHTML = '视频怪物即将出现';
-        texttwo.innerHTML = '请宝贝别忘点击屏幕哦';
-        textthree.innerHTML = '';
-        let wordBoxElements = document.querySelectorAll('.word-box');
-            wordBoxElements.forEach(function (wordBox) {
-              
-                // 将动画延迟设置为0，消除可能的延迟启动效果
-                wordBox.style.setProperty("--animation-delay", "0s");
-
-                // 清空word_box元素下的word元素中的文字内容
-                let wordElements = wordBox.querySelectorAll('.word');
-                wordElements.forEach(function (word) {
-                    word.innerText = '';
-                });
-            });
-      },25000)
-      setTimeout(function(){
-        let videoContainer = document.getElementById('videofilm');
-        if (videoContainer) {
-        textone.innerHTML = '';
-        texttwo.innerHTML = '';
-    videoContainer.outerHTML = '';}
-      },28000)
+      },18000)
       setTimeout(function () {
-        textone.innerHTML = '';
-        texttwo.innerHTML = '';
-        
-    let videoCOtainer = document.getElementById('videofilm');
-   
-    // 创建一个新的 video 元素
-    var video = document.createElement('video');
-    video.src = 'video/Glowing-Star-Girl-4096x2160.mp4';
-    video.controls = true;
-    // 将视频元素添加到 div 元素中
-    videoCOntainer.appendChild(video);
+            // 创建“视频怪物即将出现”的可点击链接并添加到textone元素中
+            let videoMonsterLink = document.createElement('a');
+            videoMonsterLink.href = 'Http://www.baidu.com';
+            videoMonsterLink.innerHTML = '视频怪物即将出现👈';
+            textone.innerHTML = '';
+            textone.appendChild(videoMonsterLink);
 
-    // 在添加视频后直接播放视频
-    video.play();
+            // 创建“请宝贝别忘点击哦”的可点击链接并添加到texttwo元素中
+            let clickHintLink = document.createElement('a');
+            clickHintLink.href = 'https://click-hint.com';
+            clickHintLink.innerHTML = '请宝贝别忘点击哦👈';
+            texttwo.innerHTML = '';
+            texttwo.appendChild(clickHintLink);
 
-},28050);
+            textthree.innerHTML = '';
+
+        }, 23000);
  
+      // 获取音频元素
+      let backgroundMusic = document.getElementById('backgroundMusic');
+
+// 监听页面触摸事件，当用户触摸屏幕时播放音频
+document.addEventListener('touchstart', function () {
+    backgroundMusic.play();
+    // 隐藏提示元素
+    document.getElementById('audioHint').style.display = 'none';
+});
  
     </script>
+     </script>
      <script>
         // 设定烟花显示的持续时间（毫秒）
         const duration = 28000; // 秒
@@ -368,28 +382,7 @@ setTimeout(function(){
 
         // 启动烟花效果
         startFireworks();
-  </script>
-    <script>
-      const audio = document.getElementById('background-audio');
-      
-      // 页面加载时尝试播放音频
-      window.addEventListener('load', function() {
-          audio.play().then(() => {
-              console.log('音频已自动播放');
-          }).catch(error => {
-              console.log('自动播放被阻止，等待用户交互');
-          });
-      });
-
-      // 可选：用户点击页面时再尝试播放一次，以防止浏览器阻止
-      document.addEventListener('click', function() {
-          if (audio.paused) {
-              audio.play();
-              console.log('用户交互后，音频已开始播放');
-          }
-      });
-  </script>
-    
+      </script>
     
   </body>
 </html>
