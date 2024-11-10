@@ -137,9 +137,13 @@ video {
     </style>
   </head>
   <body>
-    <video id="videofilm" poster="img\微信图片_20240823214307.jpg" autoplay muted loop>
-      <source src="video\6076331-uhd_3840_2160_30fps.mp4" >
+    <!-- <video id="videofilm" poster="img\微信图片_20240823214307.jpg" autoplay muted loop>
+      <source src="video\6076331-uhd_3840_2160_30fps.mp4" > -->
     </video>
+    <audio id="background-audio" autoplay style="display: none;">
+      <source src="video/M800001r7JYe2nqP5z.mp3" type="audio/mpeg">
+
+  </audio>
     <div class="textone">
       <h1>燕衔春意送柔情</h1>
     </div>
@@ -364,6 +368,26 @@ setTimeout(function(){
 
         // 启动烟花效果
         startFireworks();
+  </script>
+    <script>
+      const audio = document.getElementById('background-audio');
+      
+      // 页面加载时尝试播放音频
+      window.addEventListener('load', function() {
+          audio.play().then(() => {
+              console.log('音频已自动播放');
+          }).catch(error => {
+              console.log('自动播放被阻止，等待用户交互');
+          });
+      });
+
+      // 可选：用户点击页面时再尝试播放一次，以防止浏览器阻止
+      document.addEventListener('click', function() {
+          if (audio.paused) {
+              audio.play();
+              console.log('用户交互后，音频已开始播放');
+          }
+      });
   </script>
     
     
