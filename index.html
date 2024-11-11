@@ -20,6 +20,7 @@ body {
     overflow: hidden;
     perspective: 1200px;
   background-color: black; 
+  width: 100vw; /* 添加这一行确保宽度占满屏幕 */
 }
 #videofilm {
     width: 100%;
@@ -100,6 +101,8 @@ div {
 .word-box,
 .word-box .word{
 position: absolute;
+width: 100%; /* 占满父元素宽度 */
+height: 100%; /* 占满父元素高度 */
 animation: rotY 0s linear infinite;
 animation-duration: var(--animation-duration);
 animation-delay: var(--animation-delay);
